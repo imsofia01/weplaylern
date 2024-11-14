@@ -10,6 +10,13 @@ import reportWebVitals from './reportWebVitals';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import UserProfile from './Pages/UserProfile';
+import Leaderboard from './Pages/LeaderBoard';
+import Story from './Pages/Story';
+import LearningVideo from './Pages/LearningVideo';
+
+
+
+
 
 
 const router = createBrowserRouter([
@@ -29,6 +36,22 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <UserProfile/>,
   },
+  {
+    path: "/leaderboard",
+    element: <Leaderboard/>,
+  },
+  {
+    path: "/story",
+    element: <Story/>,
+  },
+  {
+    path: "/learning-video",
+    element: <LearningVideo/>,
+  },
+ 
+
+
+ 
   
 ]);
 

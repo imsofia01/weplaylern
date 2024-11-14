@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
     return(
-        <div className="flex flex-col md:flex-row items-center md:justify-around p-5 md:p-5 min-h-screen ">
+        <div className="scroll-smooth flex flex-col md:flex-row items-center md:justify-around md:p-5 min-h-screen ">
             {/* Character Image */}
             <div className="flex justify-center md:mt-0 md:order-last">
           <img src="assets/cute.gif" alt="Character Illustration" className="w-90 md:w-90 h-auto -order-1 scale-75 translate-x-4 skew-y-3 md:transform-none" />
         </div>
         {/* Text Section */}
-        <div className="md:text-left mb-8 md:mb-0 ">
+        <div className="md:text-left mb-1 md:mb-0 ">
           <h1 className="text-[2rem] md:text-[3rem] font-bold text-gray-900">
             Unlock your super skills
           </h1>

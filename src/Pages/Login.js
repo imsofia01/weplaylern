@@ -1,31 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Swal from 'sweetalert2'
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { app } from "../components/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
+    const Swal = require('sweetalert2')
+    
     
     const auth = getAuth(app);
     const navigate = useNavigate();
+
+    // Check if email is stored in localStorage when the component mounts
+    useEffect(() => {
+        const savedEmail = localStorage.getItem('email');
+        if (savedEmail) {
+            setEmail(savedEmail);
+            setRememberMe(true);
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log("Login Successfully");
+            const user = userCredential.user;
+            
+            const userName = user.displayName || 'Guest';
+            localStorage.setItem('userName', userName);
+            // console.log("Login Successfully");
             setError(''); // Clear any previous errors
-            alert('Login successful!');
+            // alert('Login successful!'); 
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Login Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
 
+             // Save email to localStorage if Remember Me is checked
+             if (rememberMe) {
+                localStorage.setItem('email', email);
+            } else {
+                localStorage.removeItem('email');
+            }
+          
             navigate("/profile")
         } catch (err) {
             console.log(err);
             setError(err.message); // Display error message
             alert('Worng Password or Email');
         }
+    }
+
+    const handleRememberMeChange = (e) => {
+        setRememberMe(e.target.checked);
     };
 
     return(
@@ -56,27 +92,28 @@ const Login = () => {
                         className="border border-gray-700 rounded-lg h-9 w-full px-4 mt-5" />
                 </div>
 
-                <div class="inline-flex items-center">
-                <label class="flex items-center cursor-pointer relative mt-5">
-        <input type="checkbox" checked class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800" id="check" />
-        <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-      </svg>
-         </span>
-    </label>
-        <div className="mt-5">
-     <label class="cursor-pointer ml-2 text-slate-600 text-sm" for="check-2">
-    Remember Me
-  </label>
+                <div className="inline-flex items-center">
+                            <label className="flex items-center cursor-pointer relative mt-5">
+                                <input 
+                                    type="checkbox" 
+                                    checked={rememberMe} 
+                                    onChange={handleRememberMeChange} 
+                                    className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-[#8EA1F2] checked:border-[#8EA1F2]" 
+                                    id="check" 
+                                />
+                                <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                            </label>
+                            <div className="mt-5">
+                                <label className="cursor-pointer ml-2 text-slate-600 text-sm" htmlFor="check-2">Remember Me</label>
+                                <label className="cursor-pointer ml-36 text-slate-600 text-sm" htmlFor="check-2">Forgot Password</label>
+                            </div>
+                        </div>
 
-  <label class="cursor-pointer ml-36 text-slate-600 text-sm" for="check-2">
-    Forgot Password
-  </label>
-  </div>
-</div>
-
- <button type="submit" className="button-block bg-[#8A9BE9] hover:bg-blue-500 h-12 w-full rounded-lg text-lg font-semibold mt-10 text-gray-900 ">Login</button>         
+        <button type="submit" className="button-block bg-[#8A9BE9] hover:bg-blue-500 h-12 w-full rounded-lg text-lg font-semibold mt-10 text-gray-900 ">Login</button>         
       <p className="cbx mt-2 text-gray-600 text-xs">Don't have an account? <Link to="/SignUp" className="text-[#8094eb]"> SignUp  </Link></p>
 
       </form>  

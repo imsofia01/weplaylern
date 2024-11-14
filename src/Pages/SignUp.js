@@ -39,7 +39,7 @@ const SignUp = () => {
                     <img src="assets/logo.png" alt="My Image" className="h-[431px] flex justify-center drop-shadow-lg ml-[-1px] mt-[6rem]" />
                 </div>
 
-                <div className="box-2 bg-white flex flex-col h-[569px] p-[38px_38px] rounded-2xl w-[808px] md:rounded-r-2xl w-full md:w-1/2 ">
+                <div className="box-2 bg-white flex flex-col h-[569px] p-[38px_38px] rounded-2xl  md:rounded-r-2xl w-full md:w-1/2 ">
                     <form onSubmit={handleSubmit}>
                         <div className="login">
                             <h2 className="font-medium text-gray-900 pt-4 pb-14 text-[1.5rem]">Create Account</h2>
