@@ -56,7 +56,15 @@ const Login = () => {
         } catch (err) {
             console.log(err);
             setError(err.message); // Display error message
-            alert('Worng Password or Email');
+            // alert('Worng Password or Email');
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: 
+                "Something went wrong! Worng Password or Email",
+                showConfirmButton: false,
+                timer: 1500
+              });
         }
     }
 
@@ -65,7 +73,9 @@ const Login = () => {
     };
 
     return(
-        <body className="min-h-screen flex items-center justify-center">
+       
+        
+        <div className="min-h-screen flex items-center justify-center">
         <div className="login-container bg-[#8EA1F2] shadow-lg w-[900px] h-[567px] rounded-2xl flex m-50">
         <div className="box-1 hidden md:block w-full md:w-1/2 h-auto items-center justify-center rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none bg-[#8EA1F2] ">
                 <img src="assets/logo.png" alt="My Image" className="h-[431px] flex justify-center drop-shadow-lg ml-[-13px] mt-[6rem]" />
@@ -154,7 +164,7 @@ const Login = () => {
             </div>
         </div>
        
-    </body>
+    </div>
     )
 }
 

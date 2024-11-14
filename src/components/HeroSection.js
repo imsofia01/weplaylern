@@ -11,7 +11,7 @@ const HeroSection = () => {
         </div>
         {/* Text Section */}
         <div className="md:text-left mb-1 md:mb-0 ">
-          <h1 className="text-[2rem] md:text-[3rem] font-bold text-gray-900">
+          <h1 className="text-[2rem] md:text-[3rem] font-bold text-blue-950">
             Unlock your super skills
           </h1>
           <p className="mt-4 text-lg md:text-[1.5rem] text-justify text-gray-900 max-w-lg">
