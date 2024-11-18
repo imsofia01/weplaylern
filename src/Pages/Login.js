@@ -6,6 +6,7 @@ import { app } from "../components/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -52,7 +53,7 @@ const Login = () => {
                 localStorage.removeItem('email');
             }
           
-            navigate("/profile")
+            navigate("/profile");
         } catch (err) {
             console.log(err);
             setError(err.message); // Display error message
@@ -77,7 +78,9 @@ const Login = () => {
         
         <div className="min-h-screen flex items-center justify-center">
         <div className="login-container bg-[#8EA1F2] shadow-lg w-[900px] h-[567px] rounded-2xl flex m-50">
+            
         <div className="box-1 hidden md:block w-full md:w-1/2 h-auto items-center justify-center rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none bg-[#8EA1F2] ">
+
                 <img src="assets/logo.png" alt="My Image" className="h-[431px] flex justify-center drop-shadow-lg ml-[-13px] mt-[6rem]" />
             </div>
    
@@ -127,6 +130,9 @@ const Login = () => {
       <p className="cbx mt-2 text-gray-600 text-xs">Don't have an account? <Link to="/SignUp" className="text-[#8094eb]"> SignUp  </Link></p>
 
       </form>  
+
+
+      
                 <div className="separator flex items-center mt-7">
                     <div className="line h-px bg-gray-400 flex-1"></div>
                     <p className="px-8 text-gray-400 text-sm">or continue</p>

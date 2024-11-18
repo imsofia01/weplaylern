@@ -1,7 +1,10 @@
 import withMT from "@material-tailwind/html/utils/withMT";
+const flowbite = require("flowbite-react/tailwind");
  
 export default withMT({
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}",
+     "./node_modules/flowbite/**/*.js"
+  ],
   theme: {
     screens: {
       'tablet': '640px',
@@ -15,6 +18,8 @@ export default withMT({
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 });
 

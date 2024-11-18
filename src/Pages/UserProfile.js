@@ -2,9 +2,14 @@ import React, {useState, useEffect} from "react";
 import Sidebar from "../components/Sidebar";
 
 
+
+
+
 const UserProfile = () => {
     const [userName, setUserName] = useState('');
     const [currentDate, setCurrentDate] = useState('');
+    
+    
 
     useEffect(() => {
         // Retrieve user name from localStorage
@@ -20,15 +25,17 @@ const UserProfile = () => {
         const formattedDate = date.toLocaleDateString(undefined, options);
         setCurrentDate(formattedDate);
 
+
         
     }, []);
     return(
         <>
         <div className="flex">
-        <Sidebar/>
+        <Sidebar />
+        
         <div className="m-2">
         <div className="mb-4 ml-5 mt-3">
-        <h2 className="flex m-2 text-3xl font-semibold" >Dashboard</h2>
+        <h2 className="flex m-2 text-3xl font-semibold animate__fadeOutRight" >Dashboard</h2>
         <p className="justify-center m-2 text-sm text-[#333333]">{currentDate}</p>
         </div>
         <div className="ml-5 absolute bg-neutral-300 h-44 w-[650px] rounded-2xl justify-center"> 

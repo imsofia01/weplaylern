@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar";
 const Leaderboard = () => {
     return(
         <>
-           <div className="flex">
+           <div className="flex ">
         <Sidebar/>
       <div className="sm:-mx-6 lg:-mx-8 ml-20">
         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
