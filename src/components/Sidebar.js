@@ -10,11 +10,16 @@ import Swal from 'sweetalert2'
 const Sidebar = () => {
    const Swal = require('sweetalert2')
    const [isHovered, setIsHovered] = useState(false);
-    const [userName, setUserName] = useState('');
+
+    const [userName, setUserName] = useState('Guest');
     const [isOpen, setIsOpen] = useState(true, false, window.innerWidth > 768);
+    
     const navigate = useNavigate();
      // State to track dropdown visibility
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const auth = getAuth();
+
+
 
   // Function to toggle dropdown
   const toggleDropdown = () => {
@@ -49,6 +54,8 @@ const Sidebar = () => {
             setUserName('Guest');
         }
     }, []);
+
+    
   
     
   const toggleSidebar = () => {
@@ -72,10 +79,10 @@ const Sidebar = () => {
         <div className={`flex ${isOpen ? 'w-64' : 'w-16'} transition-width duration-300 bg-gray-100 h-screen`}>
         <div className="flex flex-col items-center w-full py-4">
           {/* Toggle Button */}
-          <button onClick={toggleSidebar} className="mb-6">
+          <button onClick={toggleSidebar} className="mb-10 ">
           {isOpen ?  (
           <svg
-                className="w-6 h-6"
+                className="w-6 h-6 -ml-20 absolute"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -108,13 +115,20 @@ const Sidebar = () => {
           </button>
   
           {/* Profile Section */}
+         
           <div className="flex items-center mb-9 ">
             <img
-              src="https://via.placeholder.com/40" // Replace with your image
+              src="assets/Me.jpg" // Replace with your image
               alt="profile"
-              className="rounded-full h-10 w-10 "
+              className="rounded-full h-10 w-10"
             /> 
-            
+           
+               {/* Edit Icon */}
+            <label
+             htmlFor="profileUpload"
+              className="absolute mt-16 ml-2 underline text-[0.6rem] flex-col p-1 rounded-full cursor-pointer"
+               > Edit </label>
+        
             {isOpen && (
               
               <div className="ml-3 flex">
@@ -134,12 +148,11 @@ const Sidebar = () => {
           <Link to="/profile">
             <div className="flex items-center m-3 p-2 text-gray-700 group/item hover:hover:bg-[#ABB7FF] rounded-md cursor-pointer">
             {/* Dashboard */}
-          
                 <svg className='' width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.527344 12.9876C0.527344 13.5399 0.975059 13.9876 1.52734 13.9876H9.49201C10.0443 13.9876 10.492 13.5399 10.492 12.9876V2.13623C10.492 1.58395 10.0443 1.13623 9.49201 1.13623H1.52734C0.97506 1.13623 0.527344 1.58395 0.527344 2.13623V12.9876ZM0.527344 23.2688C0.527344 23.821 0.975059 24.2688 1.52734 24.2688H9.49201C10.0443 24.2688 10.492 23.821 10.492 23.2688V17.5579C10.492 17.0056 10.0443 16.5579 9.49201 16.5579H1.52734C0.97506 16.5579 0.527344 17.0056 0.527344 17.5579V23.2688ZM12.9832 23.2688C12.9832 23.821 13.4309 24.2688 13.9832 24.2688H21.9478C22.5001 24.2688 22.9478 23.821 22.9478 23.2688V12.4174C22.9478 11.8651 22.5001 11.4174 21.9478 11.4174H13.9832C13.4309 11.4174 12.9832 11.8651 12.9832 12.4174V23.2688ZM13.9832 1.13623C13.4309 1.13623 12.9832 1.58395 12.9832 2.13623V7.84707C12.9832 8.39936 13.4309 8.84707 13.9832 8.84707H21.9478C22.5001 8.84707 22.9478 8.39936 22.9478 7.84707V2.13623C22.9478 1.58395 22.5001 1.13623 21.9478 1.13623H13.9832Z" stroke="#293352"/>
                 </svg>
               {isOpen && 
-              
+
               <span className="ml-6 font-medium">Dashboard</span> }
             </div>
             </Link>

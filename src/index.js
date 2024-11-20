@@ -13,6 +13,8 @@ import UserProfile from './Pages/UserProfile';
 import Leaderboard from './Pages/LeaderBoard';
 import Story from './Pages/Story';
 import LearningVideo from './Pages/LearningVideo';
+import FablesCategory from './components/Category/FablesCategory';
+
 
 
 
@@ -49,6 +51,11 @@ const router = createBrowserRouter([
     path: "/learning-video",
     element: <LearningVideo/>,
   },
+  {
+    path: "/fables",
+    element: <FablesCategory/>,
+  },
+
  
 
 
